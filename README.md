@@ -39,18 +39,53 @@ A Synchronous counter is the counter in which the clock input with all the flip-
 4.	Create nodes for inputs and outputs to generate the timing diagram.
 5.	For different input combinations, generate the timing diagram.
 
-
 ## Program:
 
+## 1.UP counter:
+```
+module upcounter(clk,q1,q2,q3,q4);
+input clk;
+output reg q1,q2,q3,q4;
+always@(posedge clk)
+begin
+q4=(q1&q2&q3)^q4;
+q3=(q1&q2)^q3;
+q2=q1^q2;
+q1=1^q1;
+end
+endmodule
+```
+
+## 2.DOWN counter:
+```
+module downcounter(clk,q1,q2,q3,q4);
+input clk;
+output reg q1,q2,q3,q4;
+always@(posedge clk)
+begin
+q4=((~q3)&(~q2)&(~q1))^q4;
+q3=((~q2)&(~q1))^q3;
+q2=(~q1)^q2;
+q1=1^q1;
+end
+endmodule
+```
 
 ## RTL Schematic:
 
+## UP Counter:
+![image](https://github.com/jeyaqbalan7/Counter/assets/119393851/f97e9449-15a6-43ed-a190-c96a6e432cf5)
 
-
+## DOWN Counter:
+![image](https://github.com/jeyaqbalan7/Counter/assets/119393851/7f216686-c5d2-43c9-b153-257877b3c9ec)
 
 ## Timing Diagram:
 
+## UP Counter:
+![image](https://github.com/jeyaqbalan7/Counter/assets/119393851/9d885377-697b-45ce-9eca-20d66905f318)
 
+## DOWN Counter:
+![image](https://github.com/jeyaqbalan7/Counter/assets/119393851/3697362e-fb1a-42ab-8bc3-f0548a055627)
 
 ## Result:
 Thus the Synchronous UP and DOWN counters using T flipflops are implemented and the state tables are verified.
